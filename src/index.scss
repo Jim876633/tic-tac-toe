@@ -1,0 +1,269 @@
+$primary-color: #eec592;
+$second-color: #1c699c;
+$dark-color: #000;
+$light-color: #fff;
+$alert-color: #9e1313;
+
+html {
+    font-size: 62.8%;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+        "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+}
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+a {
+    display: inline-block;
+    color: $dark-color;
+    text-decoration: none;
+}
+.button {
+    display: inline-block;
+    background: #fff;
+    padding: 1rem 2rem;
+    border-radius: 1rem;
+    font-size: 2rem;
+    user-select: none;
+    transition: all 0.2s;
+    &:hover {
+        cursor: pointer;
+    }
+}
+.home {
+    text-align: center;
+    .title {
+        font-size: 6rem;
+        margin: 3rem;
+        letter-spacing: 1rem;
+    }
+    .chose-section {
+        display: flex;
+        justify-content: center;
+        align-items: flex-end;
+        gap: 5rem;
+        width: 70%;
+        margin: auto;
+        .vs-text {
+            font-size: 8rem;
+        }
+        .player {
+            width: 40%;
+            padding: 3rem 5rem;
+            text-align: center;
+            border: 0.5rem solid $dark-color;
+            border-radius: 1rem;
+            background: rgba($primary-color, 0.6);
+            &__title {
+                font-size: 3rem;
+                text-transform: capitalize;
+                margin-bottom: 2rem;
+            }
+            &__imageBlock {
+                position: relative;
+                width: 100%;
+                background: $dark-color;
+                .image {
+                    width: 100%;
+                    height: 100%;
+                }
+                .imageButton {
+                    padding: 0;
+                    position: absolute;
+                    width: 3rem;
+                    height: 3rem;
+                    border-radius: 50%;
+                    background: $second-color;
+                    top: 50%;
+                    border: 1px solid lighten($dark-color, 30);
+                    transform: translate(0, -50%);
+                    box-shadow: 0.4rem 0.3rem 0.1rem rgba($dark-color, 0.8);
+                    &:active,
+                    &:focus {
+                        box-shadow: 0 0;
+                        transform: translate(0.4rem, calc(-50% + 0.3rem));
+                    }
+                    & > * {
+                        width: 100%;
+                        height: 100%;
+                        color: $light-color;
+                    }
+                    &--right {
+                        right: -4rem;
+                    }
+                    &--left {
+                        left: -4rem;
+                    }
+                }
+            }
+            &__buttons {
+                display: flex;
+                justify-content: space-around;
+                flex-wrap: wrap;
+                margin-top: 3rem;
+                gap: 2rem;
+                & > * {
+                    width: min(100%, 10rem);
+                    border: 1px solid lighten($dark-color, 30);
+                    background: darken($primary-color, 20);
+                    color: lighten($primary-color, 50);
+                    box-shadow: 0.5rem 0.4rem 0.1rem rgba($dark-color, 0.8);
+                    text-transform: capitalize;
+                    transform: translate(-0.5rem, -0.5rem);
+                }
+                .chose {
+                    background: $alert-color;
+                    box-shadow: 0.2rem 0.1rem 0.1rem rgba($dark-color, 0.8);
+                    // transform: translate(0, 0);
+                }
+            }
+        }
+    }
+    .startGame {
+        background-image: linear-gradient(
+            120deg,
+            $primary-color 0%,
+            $primary-color 50%,
+            $second-color 50%
+        );
+        background-size: 220%;
+        font-size: 3rem;
+        border-radius: 1rem;
+        padding: 1.5rem 3rem;
+        margin: 5rem 0;
+        transition: background-position 0.2s, box-shadow 0.2s 0.2s;
+        &:hover {
+            background-position: 99%;
+            color: $light-color;
+            box-shadow: 0 0 3rem 0.1rem lighten($second-color, 20);
+        }
+    }
+}
+
+.game {
+    .round {
+        display: flex;
+        justify-content: center;
+        gap: 2rem;
+        width: min(80rem, 80%);
+        margin: 5rem auto;
+        flex-wrap: wrap;
+        &__player {
+            width: 35rem;
+            display: flex;
+            align-items: center;
+            padding: 1rem;
+            border: 1px solid black;
+            border-radius: 1rem;
+            background: $primary-color;
+            .player__imageBlock {
+                width: 5rem;
+                height: 5rem;
+                border-radius: 50%;
+                padding: 0.2rem;
+                overflow: hidden;
+                background: $dark-color;
+            }
+            .player__text {
+                font-size: 3rem;
+                margin-left: 1rem;
+                text-transform: capitalize;
+            }
+        }
+    }
+    .gameField {
+        display: flex;
+        position: relative;
+        flex-wrap: wrap;
+        width: 39rem;
+        margin: 3rem auto;
+        height: 39rem;
+        background: lighten($primary-color, 15);
+        // border: 0.2rem solid $dark-color;
+        &.player1:after,
+        &.player2::after,
+        &.tie::after {
+            position: absolute;
+            background: rgba($second-color, 0.6);
+            color: $light-color;
+            width: 100%;
+            height: 100%;
+            font-size: 5rem;
+            text-align: center;
+            text-transform: capitalize;
+            text-shadow: 0 0 1rem $dark-color;
+            padding-top: 16rem;
+            box-sizing: border-box;
+        }
+        &.player1::after {
+            content: "Player1 win !";
+        }
+        &.player2::after {
+            content: "Player2 win !";
+        }
+        &.tie::after {
+            content: "Tie";
+        }
+        .field {
+            width: 13rem;
+            height: 13rem;
+            border: 0.2rem solid $dark-color;
+            &:hover {
+                cursor: pointer;
+                background: $primary-color;
+            }
+        }
+    }
+    .game__buttons {
+        display: flex;
+        justify-content: center;
+        gap: 2rem;
+        margin: 1rem auto;
+        width: 39rem;
+        text-align: center;
+        visibility: hidden;
+        transform: translateY(-3rem);
+        opacity: 0;
+        transition: all 0.3s;
+        &.showBtn {
+            visibility: visible;
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .homeButton,
+        .againButton {
+            width: 100%;
+            border: none;
+            box-shadow: 0 0 0 0.1rem rgba($dark-color, 0.8);
+            transition: all 0.2s;
+            &:hover {
+                background: $second-color;
+                box-shadow: 0 0 1rem 0.2rem lighten($second-color, 20);
+                color: $light-color;
+            }
+        }
+    }
+}
+
+@media (max-width: 800px) {
+    html {
+        font-size: 55%;
+    }
+}
+@media (max-width: 700px) {
+    .home .chose-section {
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+        .player {
+            width: 80%;
+        }
+    }
+}
